@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # more CORS stuff here
+    'corsheaders.middleware.CorsMiddleware', # more CORS stuff here // add the CORS middleware line here
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,12 +53,17 @@ MIDDLEWARE = [
     
 ]
 
-# this is used to allow our app to interact with a service at this location
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",  # our React app will be running on port 3000
-# ]
-
+#Add the ALLOW_ALL_ORIGINS HERE
 CORS_ALLOW_ALL_ORIGINS = True
+
+import os
+from pathlib import Path
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend/build/static'),  # we want to serve our static files for the backend
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectstatic to use in production
 
 
 ROOT_URLCONF = 'tutorial.urls'
@@ -66,7 +71,7 @@ ROOT_URLCONF = 'tutorial.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/build')],  # Add this line
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

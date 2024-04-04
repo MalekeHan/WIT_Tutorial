@@ -4,7 +4,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from .models import Message
 from django.core.serializers import serialize
+from django.shortcuts import render
 import json
+
+
+def index(request):
+    return render(request, 'index.html')  # render our index.html file
 
 # List all messages or create a new one
 @require_http_methods(["GET", "POST"])
