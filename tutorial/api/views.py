@@ -14,7 +14,7 @@ def message_list_create(request):
         messages = Message.objects.all()
         messages_json = serialize('json', messages)
         messages_list = json.loads(messages_json)  # Convert JSON string back to a Python list
-        return JsonResponse(messages_list, safe=False)  # Now it's a list, so safe=False is needed
+        return JsonResponse(messages_list, safe=False)  
     elif request.method == 'POST':
         data = json.loads(request.body)
         message = Message.objects.create(text=data['text'])
@@ -34,4 +34,4 @@ def message_detail(request, pk):
     message = get_object_or_404(Message, pk=pk)
     message_json = serialize('json', [message, ])
     message_dict = json.loads(message_json)  # Convert JSON string back to Python object
-    return JsonResponse(message_dict, safe=False)  # Assuming you want to return the first (and only) item
+    return JsonResponse(message_dict, safe=False)  # 

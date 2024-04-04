@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # more CORS stuff here
+     # Add middleware here
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,12 +53,8 @@ MIDDLEWARE = [
     
 ]
 
-# this is used to allow our app to interact with a service at this location
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",  # our React app will be running on port 3000
-# ]
+#add the ALLOW ALL ORIGINS HERE
 
-CORS_ALLOW_ALL_ORIGINS = True
 
 
 ROOT_URLCONF = 'tutorial.urls'
